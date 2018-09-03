@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app="login">
+
+<head>
+    <script src="../js/angular.min.js"></script>
+    <script src="login.js"></script>
+    <script src="../js/jquery-3.1.1.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div ng-controller="loginCtrl as lCtrl">
+        <div class="container" style="width:60%; margin-top:20px">
+
+            <form class="form-signin" name="form">
+                <h2 class="form-signin-heading">Logowanie</h2>
+                <input type="text" ng-model="lCtrl.login" class="form-control" placeholder="Login" required autofocus>
+                <br>
+                <input type="password" ng-model="lCtrl.password" class="form-control" placeholder="Hasło" required>
+                <br>
+                <button class="btn btn-lg btn-primary btn-block col-xs-6" ng-click="lCtrl.loginAction()" type="submit">Zaloguj</button>                
+                <br>
+            </form>
+            <button class="btn btn-lg btn-warning btn-block" style="margin: 0 auto; width:100%" ng-click="lCtrl.registration()" type="submit">Rejestruj</button>
+            <br>
+            <div class="alert alert-danger" style="display: none;" id="errorLogin">
+                    <strong>Błąd!</strong> Nie poprawne dane.
+                </div>
+        </div>
+    </div>
+</body>
+
+</html>

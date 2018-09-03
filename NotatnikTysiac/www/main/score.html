@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="score">
+
+<head>
+    <script src="../js/angular.min.js"></script>
+    <script src="score.js"></script>
+    <script src="../js/jquery-3.1.1.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container" ng-controller="scoreCtrl as scCtrl">
+        <div class="header clearfix m-2">
+            <nav>
+
+            </nav>
+            <h3 class="text-muted">Notatnik do tysiąca</h3>
+        </div>
+        <h1 class="my-4">Prowadzisz rozgrywke
+        </h1>
+        <div style="text-align:center;font-size:21px">
+                <span>Drużyna 1</span> :
+                <span style="color:red">Drużyna 2</span>
+        </div>
+        <div style="text-align:center;font-size:14px">
+                <span>{{scCtrl.nick1}} {{scCtrl.nick2}}</span> :
+                <span style="color:red">{{scCtrl.nick3}} {{scCtrl.nick4}}</span>
+        </div>
+        <div style="text-align:center;font-size:30px">
+        <span>{{scCtrl.activeGame.Score1}}</span> :
+        <span style="font-size:30px;color:red">{{scCtrl.activeGame.Score2}}</span>
+    </div>
+    </div>
+   
+  
+</body>
+
+</html>

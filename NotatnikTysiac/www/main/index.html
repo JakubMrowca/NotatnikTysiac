@@ -1,0 +1,94 @@
+<!doctype html>
+<html ng-app="index">
+
+<head>
+    <script src="../js/angular.min.js"></script>
+    <script src="index.js"></script>
+    <script src="../js/jquery-3.1.1.js"></script>
+    <script src="../js/tether.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-grid.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div ng-controller="mainCtrl as mCtrl">
+        <div class="container" ng-if="mCtrl.showContent">
+            <div class="header clearfix m-2">
+                <nav>
+                    <ul class="nav nav-pills float-right">
+                        <li class="nav-item">
+                            <a class="small-button nav-link btn btn-card-red mr-2" href="notifi/notifications.html">Powiadomienia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="small-button nav-link btn btn-card-black mr-2" href="rank/ranking.html">Ranking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="small-button nav-link btn btn-card-red " ng-click="mCtrl.logout()">Wyloguj <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="bad-style"></div>
+                <h3 class="text-muted">Notatnik do tysiąca</h3>
+            </div>
+            <br>
+            <div class="jumbotron mt-2" style="padding-top:20px!important;padding-bottom:20px!important">
+                <h2 class="display-3">Profil: {{mCtrl.nick}}</h2>
+                <h3 style="float:right">{{mCtrl.played}}</h3>
+                <h3>Rozegrane:</h3>
+                <hr>
+                <h3 style="float:right">{{mCtrl.win}}</h3>
+                <h3>Wygrane:</h3>
+                <hr>
+                <h3 style="float:right">{{mCtrl.played - mCtrl.win}}</h3>
+                <h3>Przegrane:</h3>
+                <hr>
+                <div style="float:right!important;">
+                    <p><a href="#" title="Facebook" class="btn btn-facebook btn-lg"><i class="fa fa-facebook fa-fw"></i> Facebook</a></p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-success btn-lg" data-toggle="dropdown"><i class="fa fa-book" aria-expanded="false"></i> Nowa Gra</button>
+                    <ul class="dropdown-menu">
+                        <li class="li-element">
+                            <a id="threePlayer" ng-click="mCtrl.newGame(3)">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    Trzech graczy</a>
+                        </li>
+                        <li class="li-element">
+                            <a id="fourPlayer" ng-click="mCtrl.newGame(4)">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    Czterech graczy </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div class="marketing">
+                <h3 class="center" style="margin: 0 auto">Ostatnie powiadomienia</h3>
+                <hr>
+                <div class="mt-3">
+                    <div class="klocek" ng-repeat="n in mCtrl.notifications | orderBy:'-Date' |limitTo:5">
+                        <h4 style="float:right">{{n.Date}}</h4>
+                        <h4>{{n.Title}}</h4>          
+                        <p class="small-msg">{{n.Content}}</p>
+                        <button ng-show="n.WithAccepcation ==='1' && n.Accepcet === '0'" style="float:right" class="btn btn-danger" ng-click="mCtrl.accepted(n,2)">Odrzuć</button>                       
+                        <button ng-show="n.WithAccepcation ==='1' && n.Accepcet === '0'" class="btn btn-success" ng-click="mCtrl.accepted(n,1)">Potwierdź</button>
+                        <h4 class="accepcet" ng-show="n.Accepcet === '1'">Potwierdzono</h4>
+                        <h4 class="reject" ng-show="n.Accepcet === '2'">Odrzucono</h4>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>&copy; Notatnik do tysiąca 2017</p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="registration">
+
+<head>
+    <script src="../js/angular.min.js"></script>
+    <script src="registration.js"></script>
+    <script src="../js/jquery-3.1.1.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-grid.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div ng-controller="regCtrl as regCtrl">
+        <div class="container" style="margin: 0 auto; width:70%">
+            <form class="form-signin" name="form">
+                <h2 class="form-signin-heading ml-2">Rejestracja</h2>
+                <input type="text" name="login" id="login" class="form-control m-2" ng-model="regCtrl.login" placeholder="Login" required
+                    autofocus/>
+
+                <input type="text" name="nick" id="nick" class="form-control m-2" ng-model="regCtrl.nick" placeholder="Nick" required/>
+
+                <input type="password" name="password" id="password" class="form-control m-2" ng-model="regCtrl.password" placeholder="Hasło"
+                    required/>
+
+                <input type="email" id="inputEmail" class="form-control m-2" ng-model="regCtrl.email" placeholder="Email" required/>
+                <br>
+                <button class="btn btn-lg btn-primary btn-block form-control ml-2" type="submit" ng-click="regCtrl.registration()">Ok</button>
+
+            </form>
+            <br>
+            <button class="btn btn-lg btn-warning btn-block form-control ml-2" ng-click="regCtrl.goToLogin()">Anuluj</button>
+            <br>
+            <div class="alert alert-danger" style="display: none;" id="errorMessage">
+                
+            </div>
+
+            <div class="alert alert-success ml-2" style="display: none;" id="succesMessage">
+                <strong>Sukces!</strong> Konto zostało dodane.
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

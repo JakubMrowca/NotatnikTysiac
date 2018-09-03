@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="gameFour">
+
+<head>
+    <script src="Game.js"></script>
+    <script src="../js/angular.min.js"></script>
+    <script src="gameFour.js"></script>
+    <script src="../js/jquery-3.1.1.js"></script>
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="game.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div ng-controller="gameFourCtrl as gfCtrl">
+        <div class="responsive">
+            <div class="container" style="margin-top:20px">
+                <div class="headerTable">
+                    <div class="row">
+                        <div class="col-4">
+                            <button ng-disabled="gfCtrl.game.teamOneBomb" ng-click="gfCtrl.useBomb('T1')" class="btn btn-sm btn-warning ml-2 mr-2"><i class="fa fa-bomb" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="col-4">
+                            <button ng-click="gfCtrl.exit()" class="btn btn-sm btn-card-black ml-2 mr-2"><i class="fa fa-power-off" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="col-4">
+                            <button ng-disabled="gfCtrl.game.teamTwoBomb" ng-click="gfCtrl.useBomb('T2')" class="btn btn-sm btn-warning ml-2 mr-2"><i class="fa fa-bomb" aria-hidden="true"></i></button>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <label class="col-6" for="teamOneScore">T1: {{gfCtrl.game.players[0].nick.substring(0,4)}} / {{gfCtrl.game.players[1].nick.substring(0,4)}}</label>
+                        <label class="col-6" for="teamTwoScore">T2: {{gfCtrl.game.players[2].nick.substring(0,4)}} / {{gfCtrl.game.players[3].nick.substring(0,4)}}</label>
+                    </div>
+
+                    <div class="row">
+                        <input class="col-6" id="team1pkt" value="{{gfCtrl.game.teamOneScore}}" type="text" readonly>
+                        <input class="col-6" id="team2pkt" value="{{gfCtrl.game.teamTwoScore}}" type="text" readonly>
+                    </div>
+                </div>
+                <div class="table-count" style="margin-top:70px">
+                    <div class="row" ng-repeat="x in gfCtrl.game.scores">
+                        <div ng-if="$odd" class="col-6 table-div-odd">{{ x.pkt1 }}</div>
+                        <div ng-if="$odd" class="col-6 table-div-odd">{{ x.pkt2 }}</div>
+                        <div ng-if="$even" class="col-6 table-div">{{ x.pkt1 }}</div>
+                        <div ng-if="$even" class="col-6 table-div">{{ x.pkt2 }}</div>
+                    </div>
+                </div>
+                <div class="footerTable">
+                    <div style="height:30!important">
+                        <button style="float:right" ng-click="gfCtrl.back()" class="btn btn-card-red mt-2">
+                                <i class="fa fa-undo" aria-hidden="true"></i>
+                    </button>
+                        <button ng-if="gfCtrl.showAddButton" ng-click="gfCtrl.addPkt()" style="float:right" class="btn btn-primary mt-2"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button ng-if="gfCtrl.showSetButton" ng-click="gfCtrl.setRate()" style="float:right" class="btn btn-primary mt-2"><i class="fa fa-trophy" aria-hidden="true"></i></button>
+
+                        <p style="margin: 0 10px 0 10px">Stawka: {{gfCtrl.game.rate}}</p>
+                        <p style="margin: 0 10px 0 10px">Gra druzyna: {{gfCtrl.game.activeTeam}}</p>
+
+
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <input ng-model="gfCtrl.game.teamOnePkt" type="number" class="col-6"></input>
+                        <input ng-model="gfCtrl.game.teamTwoPkt" type="number" class="col-6"> </input>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

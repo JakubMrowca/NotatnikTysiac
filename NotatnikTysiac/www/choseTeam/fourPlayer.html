@@ -1,0 +1,157 @@
+<!doctype html>
+<html ng-app="fourPlayer">
+
+<head>
+    <script src="../js/angular.min.js"></script>
+    <script src="fourPlayer.js"></script>
+    <script src="../js/jquery-3.1.1.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container" ng-controller="fourPlayerCtrl as fCtrl">
+        <div class="header clearfix m-2">
+            <nav>
+
+            </nav>
+            <h3 class="text-muted">Notatnik do tysiąca</h3>
+        </div>
+        <h1 class="my-4">Wybór Graczy
+        </h1>
+        <div class="row">
+            <button ng-click="fCtrl.toggle(0)" class="btn btn-card-red m-3">Gracze online</button>
+            <button ng-click="fCtrl.toggle(1)" class="btn btn-card-black m-3">Bez kont</button>
+        </div>
+        <div ng-show="fCtrl.onlineGame" class="row">
+            <div class="col-lg-6 portfolio-item mb-2">
+                <div class="card h-100" style="padding:10px">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong style="color:black">Drużyna pierwsza</strong>
+                        </h4>
+                        <h3>{{fCtrl.player1.Nick}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 portfolio-item mb-2">
+                <div class="card h-100" style="padding:10px">
+
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong style="color:black">Drużyna pierwsza</strong>
+                        </h4>
+                        <input type="text" class="mb-2" ng-model="fCtrl.players[0].nick" placeholder="Nick">
+                        <button  ng-disabled="fCtrl.players[0].nick === ''" class="btn btn-{{fCtrl.players[0].state}}" ng-click="fCtrl.sendInvite(fCtrl.players[0].nick, 2)">
+                            <i ng-hide="fCtrl.players[0].checked" class="fa fa-envelope" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[0].exist === false" class="fa fa-exclamation" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[0].state ==='waiting'" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[0].state ==='ready'" class="fa fa-check" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[0].state ==='reject'" class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="team2" class="col-lg-6 portfolio-item mb-2">
+                <div class="card h-100" style="padding:10px">
+
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong style="color:red">Drużyna druga</strong>
+                        </h4>
+                        <input type="text" class="mb-2" ng-model="fCtrl.players[1].nick" placeholder="Nick">
+                        <button ng-disabled="fCtrl.players[1].nick === ''" class="btn btn-{{fCtrl.players[1].state}}" ng-click="fCtrl.sendInvite(fCtrl.players[1].nick, 3)">
+                            <i ng-hide="fCtrl.players[1].checked" class="fa fa-envelope" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[1].exist === false" class="fa fa-exclamation" aria-hidden="true"></i></i>
+                            <i ng-show="fCtrl.players[1].state ==='waiting'" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[1].state ==='ready'" class="fa fa-check" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[1].state ==='reject'" class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 portfolio-item mb-2">
+                <div class="card h-100" style="padding:10px">
+
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong style="color:red">Drużyna druga</strong>
+                        </h4>
+                        <input type="text" class="mb-2" ng-model="fCtrl.players[2].nick" placeholder="Nick">
+                        <button ng-disabled="fCtrl.players[2].nick === ''" class="btn btn-{{fCtrl.players[2].state}}" ng-click="fCtrl.sendInvite(fCtrl.players[2].nick, 4)">
+                            <i ng-hide="fCtrl.players[2].checked" class="fa fa-envelope" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[2].exist === false" class="fa fa-exclamation" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[2].state ==='waiting'" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[2].state ==='ready'" class="fa fa-check" aria-hidden="true"></i>
+                            <i ng-show="fCtrl.players[2].state ==='reject'" class="fa fa-times" aria-hidden="true"></i>
+                        </button>                           
+                    </div>
+                </div>
+            </div>
+            <button ng-click="fCtrl.checkButtons()" class="btn btn-card-red ml-3">Rozpocznij</button>
+        </div>
+        <br>
+        <div class="alert alert-danger" ng-show="fCtrl.errorOnline" id="errorOnline">
+            <strong>Błąd!</strong> Każdy gracz musi zaakceptować.
+        </div>
+        <div ng-hide="fCtrl.onlineGame" class="row">
+            <div class="col-lg-6 portfolio-item mb-2">
+                <div class="card h-100" style="padding:10px">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong style="color:black">Drużyna pierwsza</strong>
+                        </h4>
+                        <h3>{{fCtrl.player1.Nick}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 portfolio-item mb-2">
+                <div class="card h-100" style="padding:10px">
+
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong style="color:black">Drużyna pierwsza</strong>
+                        </h4>
+                        <input type="text" ng-model="fCtrl.player2temp" placeholder="Nick">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 portfolio-item mb-2">
+                <div class="card h-100" style="padding:10px">
+
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong style="color:red">Drużyna druga</strong>
+                        </h4>
+                        <input type="text" ng-model="fCtrl.player3temp" placeholder="Nick">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 portfolio-item mb-2">
+                <div class="card h-100" style="padding:10px">
+
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong style="color:red">Drużyna druga</strong>
+                        </h4>
+                        <input type="text" ng-model="fCtrl.player4temp" placeholder="Nick">
+                    </div>
+                </div>
+            </div>
+            <button ng-click="fCtrl.startTempGame()" class="btn btn-card-red ml-3">Rozpocznij</button>
+            <br>
+
+        </div>
+        <br>
+        <div class="alert alert-danger" ng-show="fCtrl.errorTemp" id="errorTemp">
+            <strong>Błąd!</strong> Wpisz wszystkich graczy.
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

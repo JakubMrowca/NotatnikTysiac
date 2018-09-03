@@ -1,0 +1,163 @@
+
+  .btn-facebook {
+        background: #3B5998;
+        border-radius: 0;
+        color: #fff;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #263961; 
+      }
+      .btn-facebook:link, .btn-facebook:visited {
+        color: #fff;
+      }
+      .btn-facebook:active, .btn-facebook:hover {
+        background: #263961;
+        color: #fff;
+      }
+      .klocek{
+          min-height: 60px;
+            background-color: #eceeef;
+            border-radius: .3rem;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+      }
+      .powiadomienie{
+        color: #C7191C;
+        text-decoration: none;
+        text-align: right;
+
+      }
+      .li-element{
+        padding: 3px;
+      }
+      .li-element:hover{
+        background-color: red;
+      }
+      .accepcet{
+        color: green;
+      }
+      .reject{
+        color: red;
+      }
+      .profil{
+        background-color: white;
+        color: red;
+        border: 2px solid red;
+        min-height: 100px;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .btn-card-red{
+        background-color: #FF0000!important;
+        color: black;
+        text-decoration: none;
+        text-align: center;
+      }
+      .btn-card-red:hover{
+        background-color: #FF0000!important;
+        color: black;
+        text-decoration: none;
+
+      }
+      .btn-card-black{
+        background-color:black!important;
+        color: white!important;
+        text-align: center;
+      }
+      #team2{
+        background-image: url("../img/card1.jpg");
+      }
+      .btn-init{
+        background-color: #31b0d5;
+        border-color: #2aabd2;
+      }
+      .btn-init:hover{
+        background-color: #169EC6;
+        border-color: #117290;
+      }
+      .btn-exist{
+        background-color: #ED951E;
+        border-color: #CF7721;
+      }
+      .btn-exist:hover{
+        background-color: #C6A716;
+        border-color: #AA6E0D;
+      }
+      .btn-waiting{
+        background-color: #094759;
+        border-color: #1B2FC0;
+      }
+      .btn-waiting:hover{
+        background-color: #173D8B;
+        border-color: #0A4B5F;
+      }
+      .btn-ready{
+        background-color: #1B9D06;
+        border-color: #21A625;
+      }
+      .btn-ready:hover{
+        background-color: #11A62D;
+        border-color: #085411;
+      }
+      .btn-reject{
+        background-color: #BE1619;
+        border-color: #9D182B;
+      }
+      .btn-reject:hover{
+        background-color: #AC1113;
+        border-color: #FF0004;
+      }
+      .bad-style{
+        display: none;
+      }
+
+      @media (max-width: 500px){
+        h4{
+            font-size: 13px;
+        }
+        h2{
+          font-size: 22px!important;
+          text-align: center!important;
+        }
+        h3{
+        font-size: 15px;
+        }
+        .center{
+          text-align: center!important;
+        }
+        .btn-facebook{
+          padding: 5px!important;
+          text-align: left;
+          font-size: 15px;
+          
+        }
+        .btn-lg{
+          padding: 5px!important;
+          text-align: left;
+          font-size: 15px;
+        }
+        .text-muted{
+          text-align: center!important;
+        }
+        .small-button{
+          padding: 5px!important;
+          text-align: left;
+          font-size: 15px;
+        }
+        .small-msg{
+          font-size: 13px!important;
+        }
+        .bad-style{
+          display: block;
+          height: 30px;
+        }
+        .my-4{
+          font-size: 23px!important;
+          text-align: center!important;
+        }
+    }
+
+      
+      
