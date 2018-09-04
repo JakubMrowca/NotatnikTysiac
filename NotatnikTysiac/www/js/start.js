@@ -19,6 +19,7 @@ function startCtrl() {
 
     var activePlayer = localStorage.getItem("Tysiac.Player");
     if(activePlayer !== undefined && activePlayer !== null){
+        activePlayer = JSON.parse(activePlayer);
         getActiveGame(activePlayer.Id).then(data =>{
             console.log(data);
         });
