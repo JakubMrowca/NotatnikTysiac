@@ -113,6 +113,39 @@
         display: none;
       }
 
+      .winAlert{
+        position: fixed;
+        text-align: center;
+        padding: 15px;
+        top: 40%;
+        background-color: #ebebeb;
+        height: 100px;
+        width: 100%;
+        z-index: 2200;
+      }
+      .disableBackground{
+        position:fixed;
+        background-color: black;
+        opacity: 0.4;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        z-index:2000;
+      }
+      #printGame{
+        text-align: center;
+      }
+
+      .card-ico{
+        height:30px;
+        width: 30px;
+        background-image: url("../card.png")!important;
+      }
+
+      .fontWeight{
+        font-weight: bold!important;;
+      }
+
       @media (max-width: 500px){
         h4{
             font-size: 13px;
@@ -156,6 +189,13 @@
         .my-4{
           font-size: 23px!important;
           text-align: center!important;
+        }
+        .xs-button{
+          margin: 0px!important;
+        }
+        .xs-button button{
+          width: 48%!important;
+          margin: 2px!important;
         }
     }
 

@@ -1,6 +1,6 @@
 angular.module('notifications', []).controller('notificationsCtrl', notificationsCtrl)
 
-function notificationsCtrl($scope) {
+function notificationsCtrl($scope,$interval) {
     var ctrl = this;
     ctrl.player;
     ctrl.notifications = [];
@@ -8,9 +8,12 @@ function notificationsCtrl($scope) {
     activate();
 
     function activate(){
-        ctrl.notifications = JSON.parse(localStorage.getItem("Tysiac.Player.Notif"));
         ctrl.player = JSON.parse(localStorage.getItem("Tysiac.Player"));
         console.log(ctrl.notifications);
+        getNotifications();
+        var intervalPromise = $interval(function(){
+            getNotifications();
+        },10000);
     }
 
     ctrl.accepted = function (notyfication, state) {
@@ -18,6 +21,13 @@ function notificationsCtrl($scope) {
             console.log(data);
             getNotifications();
         });
+    }
+
+    
+    ctrl.logout = function () {
+        localStorage.removeItem("Tysiac.Player");
+        localStorage.removeItem("Tysiac.Player.Notif");
+        window.location.href = "../../login/Login.html";
     }
 
     ctrl.delete = function(notification){

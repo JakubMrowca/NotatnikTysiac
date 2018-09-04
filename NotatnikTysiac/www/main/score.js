@@ -13,11 +13,10 @@ function scoreCtrl($scope) {
     }
 
     function getPlayerName(){
-        getPlayerById(ctrl.activeGame.Id_Player1).then(data => ctrl.nick1 = JSON.parse(data).id[0].Nick);
-        getPlayerById(ctrl.activeGame.Id_Player2).then(data => ctrl.nick2 = JSON.parse(data).id[0].Nick);
-        getPlayerById(ctrl.activeGame.Id_Player3).then(data => ctrl.nick3 = JSON.parse(data).id[0].Nick);
-        getPlayerById(ctrl.activeGame.Id_Player4).then(data => ctrl.nick4 = JSON.parse(data).id[0].Nick);
-
+        getPlayerById(ctrl.activeGame.Id_Player1).then(data => {ctrl.nick1 = JSON.parse(data).id[0].Nick; $scope.$apply()});
+        getPlayerById(ctrl.activeGame.Id_Player2).then(data =>  {ctrl.nick2 = JSON.parse(data).id[0].Nick; $scope.$apply()});
+        getPlayerById(ctrl.activeGame.Id_Player3).then(data =>  {ctrl.nick3 = JSON.parse(data).id[0].Nick; $scope.$apply()});
+        getPlayerById(ctrl.activeGame.Id_Player4).then(data =>  {ctrl.nick4 = JSON.parse(data).id[0].Nick; $scope.$apply()});
     }
 
     function getPlayerById(idPlayer) {

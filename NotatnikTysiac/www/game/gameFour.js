@@ -5,18 +5,22 @@ function gameFourCtrl($http, $scope) {
     var onlineGame = false;
     ctrl.game;
     ctrl.showSetButton = true;
+    ctrl.showWinAlert = false;
 
     activate();
 
     function activate() {
         ctrl.game = GameFour.loadGame();
-        if(ctrl.game == null){
-            ctrl.game = new GameFour(true);
+        if (ctrl.game == null) {
+            onlineGame = JSON.parse(localStorage.getItem("Tysiac.OnlineGame"));
+            ctrl.game = new GameFour(onlineGame);
+            localStorage.removeItem("Tysiac.OnlineGame");
             ctrl.game.players = JSON.parse(localStorage.getItem("Tysiac.Players"));
             let date = new Date();
-            createGameFour(date).then(function (data){ctrl.game.gameId = Number.parseInt(data)});
+            if (onlineGame)
+                createGameFour(date).then(function (data) { ctrl.game.gameId = Number.parseInt(data) });
         }
-        
+
     }
 
     ctrl.addPkt = function () {
@@ -24,7 +28,8 @@ function gameFourCtrl($http, $scope) {
 
         ctrl.game.addPkt();
         ctrl.game.saveGame();
-        updateGameFour();
+        if (onlineGame)
+            updateGameFour();
         var winTeam = ctrl.game.returnWinTeam();
         checkScores(winTeam);
 
@@ -45,7 +50,8 @@ function gameFourCtrl($http, $scope) {
             ctrl.game.reapetLastParty();
 
         ctrl.game.saveGame();
-        updateGameFour();
+        if (onlineGame)
+            updateGameFour();
     }
 
     ctrl.useBomb = function (team) {
@@ -56,9 +62,21 @@ function gameFourCtrl($http, $scope) {
     }
 
     ctrl.exit = function () {
-        finishGameFour();
+        if (onlineGame)
+            finishGameFour();
         ctrl.game.endGame();
         window.location.href = "../main/index.html"
+    }
+
+    ctrl.saveFinishGame = function(){
+        ctrl.saving= true;
+        saveGame().then(data =>{
+            ctrl.saving = false;
+            ctrl.exit();
+        },error =>{
+            ctrl.saving = false;
+            ctrl.exit();
+        });
     }
 
     function toggleButton() {
@@ -88,7 +106,8 @@ function gameFourCtrl($http, $scope) {
 
                 onlineWin()
             }
-            alert("Wygrala druzyna pierwsza!")
+            ctrl.showWinAlert = true;
+            ctrl.winTeam = ctrl.game.players[0].nick + " " + ctrl.game.players[1].nick       
             //ctrl.exit();
         }
 
@@ -107,15 +126,18 @@ function gameFourCtrl($http, $scope) {
 
                 onlineWin()
             }
-            alert("Wygrala druzyna druga!")
+            ctrl.winTeam = ctrl.game.players[2].nick + " " + ctrl.game.players[3].nick       
+            ctrl.showWinAlert = true;
             //ctrl.exit();
         }
     }
 
     function onlineWin() {
-        savePlayerStats()
-        sendNotyfications()
-        finishGameFour();
+        if (onlineGame) {
+            savePlayerStats()
+            sendNotyfications()
+            finishGameFour();
+        }
     }
 
     function savePlayerStats() {
@@ -156,8 +178,18 @@ function gameFourCtrl($http, $scope) {
             }
         });
     }
+    function saveGame() {
+        return $.ajax({
+            url: "http://solidarnosclukowica.pl/tysiac/saveGame.php",
+            type: "POST",
+            data: {
+                playerId: ctrl.game.players[0].id,
+                game: JSON.stringify(ctrl.game)
+            }
+        });
+    }
 
-    function updateGameFour(){
+    function updateGameFour() {
         return $.ajax({
             url: "http://solidarnosclukowica.pl/tysiac/updateGameFour.php",
             type: "POST",
@@ -169,7 +201,7 @@ function gameFourCtrl($http, $scope) {
         });
     }
 
-    function finishGameFour(){
+    function finishGameFour() {
         return $.ajax({
             url: "http://solidarnosclukowica.pl/tysiac/finishGameFour.php",
             type: "POST",
@@ -178,8 +210,8 @@ function gameFourCtrl($http, $scope) {
                 max1: ctrl.game.players[1].maxPkt,
                 max2: ctrl.game.players[3].maxPkt,
                 min1: ctrl.game.players[1].minPkt,
-                min2:ctrl.game.players[3].minPkt,
-                length:ctrl.game.count
+                min2: ctrl.game.players[3].minPkt,
+                length: ctrl.game.count
             }
         });
     }
@@ -227,7 +259,7 @@ function gameFourCtrl($http, $scope) {
             if (day.length == 1) {
                 day = "0" + day;
             }
-            return year + "-" + month + "-" + day + " " + hour+ ":" + min;
+            return year + "-" + month + "-" + day + " " + hour + ":" + min;
         }
     })();
 

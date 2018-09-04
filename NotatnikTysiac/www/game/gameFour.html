@@ -15,6 +15,12 @@
 
 <body>
     <div ng-controller="gameFourCtrl as gfCtrl">
+        <div ng-show="gfCtrl.showWinAlert" class="winAlert">
+            <h3>Wygrali: {{gfCtrl.winTeam}} </h3>
+            <button ng-disable="gfCtrl.saving" ng-click="gfCtrl.saveFinishGame()" style="width:100px" class="btn btn-card-black">Zapisz</button>
+            <button ng-disable="gfCtrl.saving" ng-click="gfCtrl.exit()" class="btn btn-card-red">Zakończ</button>
+        </div>
+        <div ng-show="gfCtrl.showWinAlert" class="disableBackground"></div>
         <div class="responsive">
             <div class="container" style="margin-top:20px">
                 <div class="headerTable">
@@ -28,8 +34,6 @@
                         <div class="col-4">
                             <button ng-disabled="gfCtrl.game.teamTwoBomb" ng-click="gfCtrl.useBomb('T2')" class="btn btn-sm btn-warning ml-2 mr-2"><i class="fa fa-bomb" aria-hidden="true"></i></button>
                         </div>
-
-
 
                     </div>
                     <div class="row">
@@ -64,8 +68,8 @@
 
                     </div>
                     <div class="row" style="margin-top:10px">
-                        <input ng-model="gfCtrl.game.teamOnePkt" type="number" class="col-6"></input>
-                        <input ng-model="gfCtrl.game.teamTwoPkt" type="number" class="col-6"> </input>
+                        <input style="height:42px" ng-model="gfCtrl.game.teamOnePkt" type="number" class="col-6">
+                        <input style="height:42px" ng-model="gfCtrl.game.teamTwoPkt" type="number" class="col-6">
                     </div>
 
 

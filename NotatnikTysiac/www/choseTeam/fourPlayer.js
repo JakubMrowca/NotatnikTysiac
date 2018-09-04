@@ -131,6 +131,8 @@ function fourPlayerCtrl($scope, $interval) {
             pkt: 0
         }];
         localStorage.setItem("Tysiac.Players", JSON.stringify(tempPlayers));
+        localStorage.setItem("Tysiac.OnlineGame", JSON.stringify(false));
+
         window.location.href = "../game/gameFour.html"
 
     }
@@ -161,6 +163,7 @@ function fourPlayerCtrl($scope, $interval) {
 
         ctrl.players = tmpTable;
         localStorage.setItem("Tysiac.Players", JSON.stringify(ctrl.players));
+        localStorage.setItem("Tysiac.OnlineGame", JSON.stringify(true));
         window.location.href = "../game/gameFour.html"
     }
 

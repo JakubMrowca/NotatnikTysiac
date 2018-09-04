@@ -1,1 +1,84 @@
-Rank
+<!doctype html>
+<html ng-app="ranking">
+
+<head>
+    <script src="../../js/angular.min.js"></script>
+    <script src="ranking.js"></script>
+    <script src="../../js/jquery-3.1.1.js"></script>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container" ng-controller="rankingCtrl as rCtrl">
+        <div class="header clearfix m-2">
+            <nav>
+                <ul class="nav nav-pills">
+                    <li style="width:25%;margin-right: 3px" class="nav-item">
+                        <a style="width:100%;padding-top: 3px;
+                                    padding-bottom: 2px;
+                                    padding: 3px 6px;" class="nav-link btn btn-card-red mr-1" href="../notifi/notifications.html"><i
+                                style="font-size:20px" class="fa fa-bell" aria-hidden="true"></i>
+                            <div style="font-size:9px">Powiadomienia</div>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="width:25%;margin-right: 3px">
+                        <a style="width:100%;
+                                padding-bottom: 2px;
+                                padding: 3px 7px;padding-top: 2px;" class="nav-link btn btn-card-black mr-1" href="../savedGame/savedGame.html">
+                            <img src="../../card.png" height="20px;" width="20px">
+                            <div style="font-size:9px">Rozgrywki</div>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="width:25%;margin-right: 3px">
+                        <a style="width:100%;padding-top: 3px;
+                                padding-bottom: 2px;
+                                padding: 3px 8px;" class="nav-link btn btn-card-black mr-1" href="../index.html"><i
+                                style="font-size:20px" class="fa fa-user" aria-hidden="true"></i><div style="font-size:9px">Profil</div></a>
+                    </li>
+
+                    <li class="nav-item" style="width:25%;">
+                        <a style="width:100%;padding-top: 3px;
+                                padding-bottom: 2px;
+                                padding: 3px 8px;" class="nav-link btn btn-card-red" ng-click="rCtrl.logout()"><i
+                                style="font-size:20px" class="fa fa-power-off" aria-hidden="true"></i> <span class="sr-only">(current)</span><div
+                                style="font-size:9px">Wyloguj</div></a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 style="margin-top:10px" class="text-muted">Notatnik do tysiąca</h3>
+        </div>
+        <br>
+        <br>
+        <div class="marketing">
+            <h3 style="margin: 0 auto">Ranking</h3>
+            <hr>
+            <div class="mt-3 container">
+                <div style="color:red" class="row">
+                    <div class="col-2"></div>
+                    <div class="col-4">Nick</div>
+                    <div class="col-2">Pkt</div>
+                    <div class="col-2">Play</div>
+                    <div class="col-2">Win</div>
+
+                </div>
+                <div ng-class="{fontWeight: $index < 3}" class="row" ng-repeat="n in rCtrl.players | orderBy:'-score'">
+                        <div class="col-2">{{$index + 1}}</div>
+                        <div class="col-4">{{n.Nick}}</div>
+                        <div class="col-2">{{n.score}}</div>
+                        <div class="col-2">{{n.Played}}</div>
+                        <div class="col-2">{{n.Win}}</div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; Notatnik do tysiąca 2017</p>
+        </footer>
+    </div>
+</body>
+
+</html>

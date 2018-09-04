@@ -15,24 +15,45 @@
     <div class="container" ng-controller="notificationsCtrl as notifiCtrl">
         <div class="header clearfix m-2">
             <nav>
-                <ul class="nav nav-pills float-right">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-card-red mr-2" href="../index.html">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-card-black mr-2" href="../rank/ranking.html">Ranking</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-card-red " ng-click="mCtrl.logout()">Wyloguj <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
+                    <ul class="nav nav-pills">
+                            <li style="width:25%;margin-right: 3px" class="nav-item">
+                                <a style="width:100%;padding-top: 3px;
+                                padding-bottom: 2px;
+                                padding: 3px 6px;" class="nav-link btn btn-card-red mr-1" href="../index.html"><i style="font-size:20px" class="fa fa-user"
+                                        aria-hidden="true"></i>
+                                        <div style="font-size:9px">Profil</div>
+                                    </a>
+                            </li>
+                            <li class="nav-item" style="width:25%;margin-right: 3px">
+                                <a style="width:100%;
+                                padding-bottom: 2px;
+                                padding: 3px 7px;padding-top: 2px;" class="nav-link btn btn-card-black mr-1" href="../savedGame/savedGame.html">
+                                <img src="../../card.png" height="20px;" width="20px">
+                                <div style="font-size:9px">Rozgrywki</div>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="width:25%;margin-right: 3px">
+                                <a style="width:100%;padding-top: 3px;
+                                padding-bottom: 2px;
+                                padding: 3px 8px;" class="nav-link btn btn-card-black mr-1" href="../rank/ranking.html"><i style="font-size:20px" class="fa fa-trophy"
+                                        aria-hidden="true"></i><div style="font-size:9px">Ranking</div></a>
+                            </li>
+    
+                            <li class="nav-item" style="width:25%;">
+                                <a style="width:100%;padding-top: 3px;
+                                padding-bottom: 2px;
+                                padding: 3px 8px;" class="nav-link btn btn-card-red" ng-click="notifiCtrl.logout()"><i style="font-size:20px" class="fa fa-power-off"
+                                        aria-hidden="true"></i> <span class="sr-only">(current)</span><div style="font-size:9px">Wyloguj</div></a>
+                                        
+                            </li>
+                        </ul>
             </nav>
-            <h3 class="text-muted">Notatnik do tysiąca</h3>
+            <h3 style="margin-top:10px" class="text-muted">Notatnik do tysiąca</h3>
         </div>
         <br>
-        <div class="profil">
+        <div style="min-height:40px" class="profil">
             <h4 style="float:right">{{notifiCtrl.notifications.length}}</h4>
-            <h4>{{notifiCtrl.player.Nick}}  liczba powiadomień:</h4>
+            <h4>Liczba powiadomień:</h4>
         </div>
         <br>
         <div class="marketing">
@@ -57,5 +78,4 @@
         </footer>
     </div>
 </body>
-
 </html>

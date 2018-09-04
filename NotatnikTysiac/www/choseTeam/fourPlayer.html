@@ -19,13 +19,13 @@
             </nav>
             <h3 class="text-muted">Notatnik do tysiąca</h3>
         </div>
-        <h1 class="my-4">Wybór Graczy
+        <h1 class="my-4"> <i class="fa fa-users" aria-hidden="true"></i> Wybór Graczy
         </h1>
-        <div class="row">
-            <button ng-click="fCtrl.toggle(0)" class="btn btn-card-red m-3">Gracze online</button>
-            <button ng-click="fCtrl.toggle(1)" class="btn btn-card-black m-3">Bez kont</button>
+        <div class="row xs-button">
+            <button ng-click="fCtrl.toggle(0)" class="btn btn-card-red m-3"><i class="fa fa-globe" aria-hidden="true"></i> Przez sieć</button>
+            <button ng-click="fCtrl.toggle(1)" class="btn btn-card-black m-3"><i class="fa fa-circle-o" aria-hidden="true"></i> Zwykła</button>
         </div>
-        <div ng-show="fCtrl.onlineGame" class="row">
+        <div style="margin-top: 20px;" ng-show="fCtrl.onlineGame" class="row">
             <div class="col-lg-6 portfolio-item mb-2">
                 <div class="card h-100" style="padding:10px">
                     <div class="card-body">
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <button ng-click="fCtrl.checkButtons()" class="btn btn-card-red ml-3">Rozpocznij</button>
+            <button ng-click="fCtrl.checkButtons()" class="btn btn-card-red ml-3"> <img src="../as.png" width="23px"height="23px"> Rozpocznij</button>
         </div>
         <br>
         <div class="alert alert-danger" ng-show="fCtrl.errorOnline" id="errorOnline">
@@ -140,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            <button ng-click="fCtrl.startTempGame()" class="btn btn-card-red ml-3">Rozpocznij</button>
+            <button ng-click="fCtrl.startTempGame()" class="btn btn-card-red ml-3"><img src="../as.png" width="23px"height="23px"> Rozpocznij</button>
             <br>
 
         </div>

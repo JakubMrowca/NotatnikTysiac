@@ -1,6 +1,6 @@
 angular.module('index', []).controller('mainCtrl', mainCtrl)
 
-function mainCtrl($scope) {
+function mainCtrl($scope,$interval) {
     var ctrl = this;
     var player;
     ctrl.showContent = false;
@@ -32,14 +32,16 @@ function mainCtrl($scope) {
         player = JSON.parse(localStorage.getItem("Tysiac.Player"));
         if (player !== undefined && player !== null) {
             ctrl.showContent = true;
-
             ctrl.nick = player.Nick;
             ctrl.win = player.Win;
             ctrl.played = player.Played;
             console.log(player);
-
             getNotifications();
+            var intervalPromise = $interval(function(){
+                getNotifications();
+            },10000);
         }
+        
     }
 
     function getNotifications() {
