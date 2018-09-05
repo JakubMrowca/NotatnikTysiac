@@ -15,15 +15,15 @@
         <div class="container" style="margin: 0 auto; width:70%">
             <form class="form-signin" name="form">
                 <h2 class="form-signin-heading ml-2">Rejestracja</h2>
-                <input type="text" name="login" id="login" class="form-control m-2" ng-model="regCtrl.login" placeholder="Login" required
+                <input style="display:none;" type="text" name="login" id="login" class="form-control m-2" ng-model="regCtrl.login" placeholder="Login"
                     autofocus/>
 
-                <input type="text" name="nick" id="nick" class="form-control m-2" ng-model="regCtrl.nick" placeholder="Nick" required/>
+                <input type="text" name="nick" id="nick" class="form-control m-2" ng-model="regCtrl.nick" placeholder="Nick" required autofocus/>
 
                 <input type="password" name="password" id="password" class="form-control m-2" ng-model="regCtrl.password" placeholder="Hasło"
                     required/>
 
-                <input type="email" id="inputEmail" class="form-control m-2" ng-model="regCtrl.email" placeholder="Email" required/>
+                <input type="email" id="inputEmail" class="form-control m-2" ng-model="regCtrl.email" placeholder="Email"/>
                 <br>
                 <button class="btn btn-lg btn-primary btn-block form-control ml-2" type="submit" ng-click="regCtrl.registration()">Ok</button>
 

@@ -2,8 +2,9 @@ angular.module('registration', []).controller('regCtrl', regCtrl)
 
 function regCtrl($scope) {
     var ctrl = this;
-
+    ctrl.login = ctrl.nick
     ctrl.registration = function () {
+        ctrl.login = ctrl.nick
         checkLogin(ctrl.login).then(data => {
             if (data === true) {
                 checkNick(ctrl.nick).then(response => {

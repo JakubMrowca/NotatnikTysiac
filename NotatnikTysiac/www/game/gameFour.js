@@ -183,7 +183,10 @@ function gameFourCtrl($http, $scope) {
             url: "http://solidarnosclukowica.pl/tysiac/saveGame.php",
             type: "POST",
             data: {
-                playerId: ctrl.game.players[0].id,
+                playerId1: ctrl.game.players[0].id,
+                playerId2: ctrl.game.players[1].id,
+                playerId3: ctrl.game.players[2].id,
+                playerId4: ctrl.game.players[3].id,
                 game: JSON.stringify(ctrl.game)
             }
         });

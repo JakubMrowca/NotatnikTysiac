@@ -24,7 +24,7 @@
         <div class="responsive">
             <div class="container" style="margin-top:20px">
                 <div class="headerTable">
-                    <div class="row">
+                    <div style="margin-top:8px" class="row">
                         <div class="col-4">
                             <button ng-disabled="gfCtrl.game.teamOneBomb" ng-click="gfCtrl.useBomb('T1')" class="btn btn-sm btn-warning ml-2 mr-2"><i class="fa fa-bomb" aria-hidden="true"></i></button>
                         </div>
@@ -48,10 +48,10 @@
                 </div>
                 <div class="table-count" style="margin-top:70px">
                     <div class="row" ng-repeat="x in gfCtrl.game.scores">
-                        <div ng-if="$odd" class="col-6 table-div-odd">{{ x.pkt1 }}</div>
-                        <div ng-if="$odd" class="col-6 table-div-odd">{{ x.pkt2 }}</div>
-                        <div ng-if="$even" class="col-6 table-div">{{ x.pkt1 }}</div>
-                        <div ng-if="$even" class="col-6 table-div">{{ x.pkt2 }}</div>
+                        <div ng-if="$odd" style="padding-left:0px!important" class="col-6 table-div-odd">{{ x.pkt1 }}</div>
+                        <div ng-if="$odd" style="padding-right:0px!important" class="col-6 table-div-odd">{{ x.pkt2 }}</div>
+                        <div ng-if="$even" style="padding-left:0px!important" class="col-6 table-div">{{ x.pkt1 }}</div>
+                        <div ng-if="$even" style="padding-right:0px!important" class="col-6 table-div">{{ x.pkt2 }}</div>
                     </div>
                 </div>
                 <div class="footerTable">
@@ -59,8 +59,8 @@
                         <button style="float:right" ng-click="gfCtrl.back()" class="btn btn-card-red mt-2">
                                 <i class="fa fa-undo" aria-hidden="true"></i>
                     </button>
-                        <button ng-if="gfCtrl.showAddButton" ng-click="gfCtrl.addPkt()" style="float:right" class="btn btn-primary mt-2"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                        <button ng-if="gfCtrl.showSetButton" ng-click="gfCtrl.setRate()" style="float:right" class="btn btn-primary mt-2"><i class="fa fa-trophy" aria-hidden="true"></i></button>
+                        <button ng-if="gfCtrl.showAddButton" ng-click="gfCtrl.addPkt()" style="float:right; margin-right:5px" class="btn btn-primary mt-2"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button ng-if="gfCtrl.showSetButton" ng-click="gfCtrl.setRate()" style="float:right;margin-right:5px" class="btn btn-primary mt-2"><i class="fa fa-trophy" aria-hidden="true"></i></button>
 
                         <p style="margin: 0 10px 0 10px">Stawka: {{gfCtrl.game.rate}}</p>
                         <p style="margin: 0 10px 0 10px">Gra druzyna: {{gfCtrl.game.activeTeam}}</p>
