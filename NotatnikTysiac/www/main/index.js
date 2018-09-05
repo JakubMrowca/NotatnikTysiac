@@ -45,7 +45,7 @@ function mainCtrl($scope, $interval) {
             getNotifications();
             var intervalPromise = $interval(function () {
                 getNotifications();
-            }, 30000);
+            }, 10000);
         }
 
     }
