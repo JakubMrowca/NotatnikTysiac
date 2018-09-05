@@ -54,7 +54,7 @@ function mainCtrl($scope, $interval) {
         getNotificationsByPlayerId(player.Id).then(data => {
             notificationCount = JSON.parse(localStorage.getItem("Tysiac.NotifCount"));
             var notifications = JSON.parse(data);
-            if (notifications != undefined && notifications.notyfications.length > notificationCount) {
+            if (notificationCount != undefined && notifications.notyfications.length > notificationCount) {
                 sendNotifi(notifications.notyfications[notifications.notyfications.length - 1]);
             }
             ctrl.notifications = notifications.notyfications;

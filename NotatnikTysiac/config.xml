@@ -1,4 +1,4 @@
-﻿<?xml version="1.2" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myappda652c" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
   <name>Notatnik Tysiąc</name>
   <description>Aplikacja do notowania wyników gry karcianej tysiąc.</description>
