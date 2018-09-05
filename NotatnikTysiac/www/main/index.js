@@ -1,11 +1,17 @@
 angular.module('index', []).controller('mainCtrl', mainCtrl)
 
-function mainCtrl($scope,$interval) {
+function mainCtrl($scope, $interval) {
     var ctrl = this;
     var player;
+    var notificationCount;
     ctrl.showContent = false;
-    ctrl.notifications;
+    ctrl.notifications = [];
     activate();
+
+    if ("Notification" in window) {
+        Notification.requestPermission(function (permission) {
+        });
+    }
 
     ctrl.newGame = function (playerCount) {
         if (playerCount == 4) {
@@ -37,22 +43,36 @@ function mainCtrl($scope,$interval) {
             ctrl.played = player.Played;
             console.log(player);
             getNotifications();
-            var intervalPromise = $interval(function(){
+            var intervalPromise = $interval(function () {
                 getNotifications();
-            },10000);
+            }, 30000);
         }
-        
+
     }
 
     function getNotifications() {
         getNotificationsByPlayerId(player.Id).then(data => {
-
+            notificationCount = JSON.parse(localStorage.getItem("Tysiac.NotifCount"));
             var notifications = JSON.parse(data);
+            if (notifications != undefined && notifications.notyfications.length > notificationCount) {
+                sendNotifi(notifications.notyfications[notifications.notyfications.length - 1]);
+            }
             ctrl.notifications = notifications.notyfications;
+            localStorage.setItem("Tysiac.NotifCount", JSON.stringify(ctrl.notifications.length));
             $scope.$apply();
             console.log(ctrl.notifications);
             localStorage.setItem("Tysiac.Player.Notif", JSON.stringify(ctrl.notifications));
         });
+    }
+
+    function sendNotifi(lastNotification) {
+        var notification = new Notification('Notatnik Tysi¹c', {
+            tag: 'Powiadomienie',
+            body: lastNotification.Content
+        });
+        notification.onshow = function () { console.log('show'); };
+        notification.onclose = function () { console.log('close'); };
+        notification.onclick = function () { console.log('click'); };
     }
 
     //http
